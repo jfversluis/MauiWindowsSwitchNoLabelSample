@@ -16,13 +16,17 @@ namespace MauiWindowsSwitchNoLabelSample
                 });
 
 #if WINDOWS
-            Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping("NoLabel", (handler, View) =>
+            Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping("NoLabel", (handler, view) =>
             {
-                handler.PlatformView.OnContent = null;
-                handler.PlatformView.OffContent = null;
+                // Remove this if statement if you want to apply this to all switches
+                if (view is MyCustomSwitch)
+                {
+                    handler.PlatformView.OnContent = null;
+                    handler.PlatformView.OffContent = null;
 
-                // Add this to remove the padding around the switch as well
-                // handler.PlatformView.MinWidth = 0;
+                    // Add this to remove the padding around the switch as well
+                    // handler.PlatformView.MinWidth = 0;
+                }
             });
 #endif
 
